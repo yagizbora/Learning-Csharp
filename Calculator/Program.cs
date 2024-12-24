@@ -45,7 +45,7 @@
                     else if (operation == "/")
                     {
                         if (calculator.SecondNumber == 0)
-                            throw new DivideByZeroException("Cannot divide by zero!");
+                            throw new DivideByZeroException();
                         calculator.Result = calculator.FirstNumber / calculator.SecondNumber;
                     }
                     else
@@ -56,11 +56,11 @@
 
                     Console.WriteLine($"Result: {calculator.Result}");
                 }
-                catch (DivideByZeroException ex)
+                catch (DivideByZeroException)
                 {
                     Console.WriteLine("You cannot divide by zero!");
                 }
-                catch (FormatException ex)
+                catch (FormatException)
                 {
                     Console.WriteLine("Please enter a valid number.");
                 }
@@ -70,7 +70,7 @@
                 }
 
                 Console.WriteLine("Do you want to continue? (yes/no)");
-                string continueprogram = Console.ReadLine()?.ToLower();
+                string? continueprogram = Console.ReadLine()?.ToLower();
 
                 if (continueprogram == "yes")
                 {
