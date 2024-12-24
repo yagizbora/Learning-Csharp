@@ -24,10 +24,11 @@
                     calculator.SecondNumber = num2;
 
                     Console.WriteLine("Choose an option from the following list:");
-                    Console.WriteLine("+  Add");
+                    Console.WriteLine("+ Add");
                     Console.WriteLine("- Subtract");
                     Console.WriteLine("* Multiply");
-                    Console.WriteLine("/ - Divide");
+                    Console.WriteLine("/ Divide");
+                    Console.WriteLine("% Percent");
                     Console.Write("Your option? ");
 
                     var operation = Console.ReadLine();
@@ -37,6 +38,10 @@
                         calculator.Result = calculator.FirstNumber - calculator.SecondNumber;
                     else if (operation == "*")
                         calculator.Result = calculator.FirstNumber * calculator.SecondNumber;
+                    else if(operation == "%")
+                    {
+                        calculator.Result = (calculator.FirstNumber * calculator.SecondNumber) / 100.0f;
+                    }
                     else if (operation == "/")
                     {
                         if (calculator.SecondNumber == 0)
