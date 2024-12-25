@@ -23,14 +23,15 @@ namespace Raise_Calculation
                     if (string.IsNullOrEmpty(num1))
                     {
                         Console.WriteLine("Salary cannot be empty.");
-                        return;
+                        Console.WriteLine("Program will be restart....");
+                        Thread.Sleep(1000);
                     }
 
-                    // Maaşı sayıya dönüştür
                     if (!float.TryParse(num1, out float salary))
                     {
                         Console.WriteLine("Please enter a valid numeric value for the salary.");
-                        return;
+                        Console.WriteLine("Program will be restart....");
+                        Thread.Sleep(1000);
                     }
 
                     calculator.FirstNumber = salary;
@@ -40,13 +41,13 @@ namespace Raise_Calculation
                     if (string.IsNullOrEmpty(num2))
                     {
                         Console.WriteLine("Raise percentage cannot be empty.");
-                        return;
+                        Console.WriteLine("Program will be restart....");
+                        Thread.Sleep(1000);
                     }
 
                     if (!int.TryParse(num2, out int raisePercentage))
                     {
                         Console.WriteLine("Please enter a valid numeric value for the raise percentage.");
-                        return;
                     }
 
                     calculator.SecondNumber = raisePercentage;
@@ -67,15 +68,21 @@ namespace Raise_Calculation
 
                 if (continueprogram == "yes")
                 {
+                    Console.WriteLine("Program will be restart....");
+                    Thread.Sleep(1000);
                     proccessprogram = true;
                 }
                 else if (continueprogram == "no")
                 {
+                    Console.WriteLine("Program will be stop....");
+                    Thread.Sleep(1000);
                     proccessprogram = false;
                 }
                 else
                 {
                     Console.WriteLine("Invalid input. Assuming 'no'.");
+                    Console.WriteLine("Program will be stop....");
+                    Thread.Sleep(1000);
                     proccessprogram = false;
                 }
             }
