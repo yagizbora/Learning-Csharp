@@ -38,8 +38,8 @@ namespace Basic_Guess_Number
 
                     if (guess != randomnumber)
                     {
-                        int difference = Math.Abs(randomnumber - guess);
-                        Console.WriteLine($"Tahmininiz bu kadar sayı uzaklıkta: {difference}");
+                        //int difference = Math.Abs(randomnumber - guess);
+                        //Console.WriteLine($"Tahmininiz bu kadar sayı uzaklıkta: {difference}");
                         if (guess < randomnumber)
                             Console.WriteLine("Daha büyük bir sayı deneyin.");
                         if (attempts % 3 == 0)
