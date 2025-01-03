@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WindowsFormsEntry": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "nativeDebugging": false,
+      "jsWebView2Debugging": false,
+      "sqlDebugging": false,
+      "hotReloadEnabled": false
+    }
+  }
+}
