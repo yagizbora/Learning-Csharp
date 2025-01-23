@@ -39,11 +39,12 @@ namespace Weather_App
                     string resultString = await response.Content.ReadAsStringAsync();
                     dynamic? result = JsonConvert.DeserializeObject(resultString);
                     Console.WriteLine(result);
-                    string country_code = result.sys.country;
-                    string weatherStatus = result.weather[0].main;
-                    string description = result.weather[0].description;
-                    float temperature = result.main.temp;
-                    float feelsLike = result.main.feels_like;
+                    string? name = result.name;
+                    string? country_code = result.sys.country;
+                    string? weatherStatus = result.weather[0].main;
+                    string? description = result.weather[0].description;
+                    float? temperature = result.main.temp;
+                    float? feelsLike = result.main.feels_like;
 
                     // ListView sütunlarýný ayarlayýn
                     Weather_Status.View = View.Details;
@@ -52,6 +53,7 @@ namespace Weather_App
 
                     if (Weather_Status.Columns.Count == 0)
                     {
+                        Weather_Status.Columns.Add("Þehir", 100);
                         Weather_Status.Columns.Add("Durum", 100);
                         Weather_Status.Columns.Add("Ülke", 100);
                         Weather_Status.Columns.Add("Açýklama", 150);
@@ -63,7 +65,8 @@ namespace Weather_App
                     Weather_Status.Items.Clear();
 
                     // Yeni veri ekleme
-                    var listViewItem = new ListViewItem(weatherStatus);
+                    var listViewItem = new ListViewItem(name);
+                    listViewItem.SubItems.Add(weatherStatus);
                     listViewItem.SubItems.Add(country_code);
                     listViewItem.SubItems.Add(description);
                     listViewItem.SubItems.Add($"{temperature} °C");

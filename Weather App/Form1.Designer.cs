@@ -36,7 +36,7 @@
             // Fetchdata
             // 
             Fetchdata.AccessibleName = "Fetch_Data";
-            Fetchdata.Location = new Point(301, 12);
+            Fetchdata.Location = new Point(568, 12);
             Fetchdata.Name = "Fetchdata";
             Fetchdata.Size = new Size(102, 51);
             Fetchdata.TabIndex = 0;
@@ -50,7 +50,7 @@
             Weather_Status.Margin = new Padding(4);
             Weather_Status.MinimumSize = new Size(100, 100);
             Weather_Status.Name = "Weather_Status";
-            Weather_Status.Size = new Size(391, 209);
+            Weather_Status.Size = new Size(670, 209);
             Weather_Status.TabIndex = 1;
             Weather_Status.UseCompatibleStateImageBehavior = false;
             Weather_Status.DrawColumnHeader += Weather_Status_DrawColumnHeader;
@@ -61,7 +61,7 @@
             // 
             city.BackColor = SystemColors.Window;
             city.ForeColor = SystemColors.WindowText;
-            city.Location = new Point(12, 12);
+            city.Location = new Point(221, 12);
             city.Multiline = true;
             city.Name = "city";
             city.Size = new Size(214, 51);
@@ -72,12 +72,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(409, 324);
+            ClientSize = new Size(682, 324);
             Controls.Add(Fetchdata);
             Controls.Add(city);
             Controls.Add(Weather_Status);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Weather App";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

@@ -42,7 +42,7 @@ namespace Geometric_Calculator
         private void calculate_circle_Click(object sender, EventArgs e)
         {
             double a = Convert.ToDouble(textBox3.Text);
-            double result = Math.PI * ( a *  a );
+            float result = (float)(Math.PI * ( a *  a ));
             
             label8.Text = result.ToString() + "m Alan";
         }

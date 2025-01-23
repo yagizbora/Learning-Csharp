@@ -10,14 +10,29 @@ namespace Basic_Guess_Number
 
             Random random = new Random();
             Console.WriteLine("Zorluk seçin: 1 - Kolay, 2 - Orta, 3 - Zor");
-            int difficulty = int.Parse(Console.ReadLine());
+
+            int difficulty = 0; 
+            bool isValidInput = false;
+
+            while (!isValidInput)
+            {
+                string difficultyInput = Console.ReadLine();
+                if (int.TryParse(difficultyInput, out difficulty) && (difficulty == 1 || difficulty == 2 || difficulty == 3))
+                {
+                    isValidInput = true; 
+                }
+                else
+                {
+                    Console.WriteLine("Lütfen geçerli bir zorluk seviyesi seçin (1, 2 veya 3).");
+                }
+            }
+
             int range = difficulty == 1 ? 50 : difficulty == 2 ? 100 : 200;
             int randomnumber = random.Next(1, range + 1);
             int guess;
             int attempts = 0;
-            bool isValidInput = false;
             Console.WriteLine("Bir hazineyi bulmaya çalışıyorsunuz! Doğru sayıyı tahmin edebilir misiniz?");
-            Console.WriteLine($"1 ile {(difficulty == 1 ? 50 : difficulty == 2 ? 100 : 200)} arasında bir sayı tahmin edin!");
+            Console.WriteLine($"1 ile {range} arasında bir sayı tahmin edin!");
 
             do
             {
@@ -32,23 +47,22 @@ namespace Basic_Guess_Number
 
                     if (attempts == 5 && guess != randomnumber)
                     {
-                        Console.WriteLine($"Maalesef bilemediniz, doğru sayı {randomnumber}");
-                        break; 
+                        Console.WriteLine($"Maalesef bilemediniz, doğru sayı {randomnumber}.");
+                        break;
                     }
 
                     if (guess != randomnumber)
                     {
-                        //int difference = Math.Abs(randomnumber - guess);
-                        //Console.WriteLine($"Tahmininiz bu kadar sayı uzaklıkta: {difference}");
                         if (guess < randomnumber)
                             Console.WriteLine("Daha büyük bir sayı deneyin.");
+                        else if (guess > randomnumber)
+                            Console.WriteLine("Daha küçük bir sayı deneyin.");
+
                         if (attempts % 3 == 0)
                         {
                             Console.WriteLine("İpucu: Sayı çift mi, tek mi?");
                             Console.WriteLine(randomnumber % 2 == 0 ? "Sayı çifttir." : "Sayı tektir.");
                         }
-                        else if (guess > randomnumber)
-                            Console.WriteLine("Daha küçük bir sayı deneyin.");
                     }
                     else if (attempts == 1)
                     {
@@ -56,17 +70,16 @@ namespace Basic_Guess_Number
                     }
                     else
                     {
-                        var elapsedtime = DateTime.Now - startTime;
-                        Console.WriteLine($"Tebrikler! {attempts} tahmininde ve {elapsedtime} kadar saniyede doğru bildiniz.");
+                        var elapsedTime = DateTime.Now - startTime;
+                        Console.WriteLine($"Tebrikler! {attempts} tahminde ve {elapsedTime.TotalSeconds} saniyede doğru bildiniz.");
                     }
-
                 }
                 else
                 {
                     Console.WriteLine("Lütfen geçerli bir sayı girin.");
                 }
 
-            } while (guess != randomnumber && attempts < 5); 
+            } while (guess != randomnumber && attempts < 5);
         }
     }
 }
