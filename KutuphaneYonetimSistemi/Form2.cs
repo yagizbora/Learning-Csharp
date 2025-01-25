@@ -20,6 +20,18 @@ namespace KutuphaneYonetimSistemi
         }
         SqlConnection connection;
 
+        public void showdata()
+        {
+            string query = "SELECT * FROM TableKitaplar";
+            SqlDataAdapter response = new SqlDataAdapter(query, connection);
+            DataTable dt = new DataTable();
+            response.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                dataGridViewKitaplar.DataSource = dt;
+            }
+        }
+
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -39,17 +51,10 @@ namespace KutuphaneYonetimSistemi
 
                 connection = new SqlConnection(connectionString);
 
-             if(!string.IsNullOrEmpty(connectionString))
-             {
-                    string query = "SELECT * FROM TableKitaplar";
-                    SqlDataAdapter response = new SqlDataAdapter(query, connection);
-                    DataTable dt = new DataTable();
-                    response.Fill(dt);
-                    if(dt.Rows.Count > 0)
-                    {
-                        dataGridViewKitaplar.DataSource = dt;
-                    }
-             }
+                if (!string.IsNullOrEmpty(connectionString))
+                {
+                    showdata();
+                }
             }
             catch (Exception ex)
             {
@@ -64,6 +69,127 @@ namespace KutuphaneYonetimSistemi
         private void label11_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonKitapEkle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (string.IsNullOrWhiteSpace(textBoxKitapAdi.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxYazarAdi.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxYazarSoyadi.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxISBN.Text) ||
+                    string.IsNullOrWhiteSpace(textBoxKitapTurKodu.Text))
+                {
+                    MessageBox.Show("Tüm alanlar doldurulmalıdır!");
+                    return;
+                }
+
+                connection.Open();
+                string query = "INSERT INTO TableKitaplar (KitapAdi, YazarAdi, YazarSoyadi, ISBN, Durum, KitapTurKodu) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)";
+                SqlCommand response = new SqlCommand(query, connection);
+                response.Parameters.AddWithValue("@P1", textBoxKitapAdi.Text);
+                response.Parameters.AddWithValue("@P2", textBoxYazarAdi.Text);
+                response.Parameters.AddWithValue("@P3", textBoxYazarSoyadi.Text);
+                response.Parameters.AddWithValue("@P4", textBoxISBN.Text);
+                response.Parameters.AddWithValue("@P5", "True");
+                response.Parameters.AddWithValue("@P6", textBoxKitapTurKodu.Text);
+
+                response.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            showdata();
+        }
+
+        private void dataGridViewKitaplar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int chooseline = dataGridViewKitaplar.SelectedCells[0].RowIndex;
+            kitapid.Text = dataGridViewKitaplar.Rows[chooseline].Cells[0].Value.ToString();
+            textBoxKitapAdi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[1].Value.ToString();
+            textBoxYazarAdi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[2].Value.ToString();
+            textBoxYazarSoyadi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[3].Value.ToString();
+            textBoxISBN.Text = dataGridViewKitaplar.Rows[chooseline].Cells[4].Value.ToString();
+            textBoxKitapTurKodu.Text = dataGridViewKitaplar.Rows[chooseline].Cells[8].Value.ToString();
+            textBoxOduncAlan.Text = dataGridViewKitaplar.Rows[chooseline].Cells[6].Value.ToString();
+
+            if (dataGridViewKitaplar.Rows[chooseline].Cells[7].Value != DBNull.Value)
+            {
+                dateTimePicker1.Value = Convert.ToDateTime(dataGridViewKitaplar.Rows[chooseline].Cells[7].Value);
+            }
+
+        }
+
+        private void buttonKitapBilgiGuncelle_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))  
+                {
+                    MessageBox.Show("Kitap seçmeden güncelleme işlemi yapılamaz!");
+                }
+                else
+                {
+                    connection.Open();
+                    string query = "UPDATE TableKitaplar SET KitapAdi = @p1, YazarAdi = @p2, YazarSoyadi = @p3, ISBN = @p4, KitapTurKodu = @p5 WHERE ID = @p6";
+                    SqlCommand response = new SqlCommand(query, connection);
+                    response.Parameters.AddWithValue("@p1", textBoxKitapAdi.Text);
+                    response.Parameters.AddWithValue("@p2", textBoxYazarAdi.Text);
+                    response.Parameters.AddWithValue("@p3", textBoxYazarSoyadi.Text);
+                    response.Parameters.AddWithValue("@p4", textBoxISBN.Text);
+                    response.Parameters.AddWithValue("@p5", textBoxKitapTurKodu.Text);
+                    response.Parameters.AddWithValue("@p6", kitapid.Text); 
+                    response.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            showdata();
+        }
+
+        private void buttonKitabiOduncVer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))
+                {
+                    MessageBox.Show("Kitap seçmeden güncelleme işlemi yapılamaz!");
+                }
+                
+                else
+                {
+                    connection.Open();
+                    string query = "UPDATE TableKitaplar SET OduncAlan = @p1, OduncAlmaTarihi = @p2,Durum = @p3 WHERE ID = @p4";
+                    SqlCommand response = new SqlCommand(query, connection);
+                    response.Parameters.AddWithValue("@p1", textBoxOduncAlan.Text);
+                    response.Parameters.AddWithValue("@p2", SqlDbType.Date).Value = dateTimePicker1.Value.Date;
+                    response.Parameters.AddWithValue("@p3", "False");
+                    response.Parameters.AddWithValue("@p4", kitapid.Text);
+                    response.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+            showdata();
         }
     }
 }

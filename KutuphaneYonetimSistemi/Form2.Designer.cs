@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            kitapid = new Label();
             buttonKitapBilgiGuncelle = new Button();
             buttonKitapEkle = new Button();
             textBoxKitapTurKodu = new TextBox();
@@ -55,6 +56,7 @@
             label10 = new Label();
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
+            buttonKitabiOduncVer = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -63,6 +65,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(kitapid);
             groupBox1.Controls.Add(buttonKitapBilgiGuncelle);
             groupBox1.Controls.Add(buttonKitapEkle);
             groupBox1.Controls.Add(textBoxKitapTurKodu);
@@ -84,6 +87,14 @@
             groupBox1.Text = "Kitap Kayıt ve güncelleme";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // kitapid
+            // 
+            kitapid.AutoSize = true;
+            kitapid.Location = new Point(98, 28);
+            kitapid.Name = "kitapid";
+            kitapid.Size = new Size(0, 15);
+            kitapid.TabIndex = 13;
+            // 
             // buttonKitapBilgiGuncelle
             // 
             buttonKitapBilgiGuncelle.Location = new Point(26, 234);
@@ -92,6 +103,7 @@
             buttonKitapBilgiGuncelle.TabIndex = 12;
             buttonKitapBilgiGuncelle.Text = "Kitap bilgi güncelle";
             buttonKitapBilgiGuncelle.UseVisualStyleBackColor = true;
+            buttonKitapBilgiGuncelle.Click += buttonKitapBilgiGuncelle_Click;
             // 
             // buttonKitapEkle
             // 
@@ -101,6 +113,7 @@
             buttonKitapEkle.TabIndex = 11;
             buttonKitapEkle.Text = "Yeni kitap ekle";
             buttonKitapEkle.UseVisualStyleBackColor = true;
+            buttonKitapEkle.Click += buttonKitapEkle_Click;
             // 
             // textBoxKitapTurKodu
             // 
@@ -185,7 +198,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 28);
+            label1.Location = new Point(7, 28);
             label1.Name = "label1";
             label1.Size = new Size(48, 15);
             label1.TabIndex = 0;
@@ -193,6 +206,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(buttonKitabiOduncVer);
             groupBox2.Controls.Add(dateTimePicker1);
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label8);
@@ -299,11 +313,13 @@
             // 
             // dataGridViewKitaplar
             // 
+            dataGridViewKitaplar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewKitaplar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewKitaplar.Location = new Point(12, 332);
             dataGridViewKitaplar.Name = "dataGridViewKitaplar";
             dataGridViewKitaplar.Size = new Size(1022, 221);
             dataGridViewKitaplar.TabIndex = 3;
+            dataGridViewKitaplar.CellClick += dataGridViewKitaplar_CellClick;
             // 
             // label7
             // 
@@ -313,6 +329,16 @@
             label7.Size = new Size(69, 15);
             label7.TabIndex = 4;
             label7.Text = "Kitap Listesi";
+            // 
+            // buttonKitabiOduncVer
+            // 
+            buttonKitabiOduncVer.Location = new Point(107, 138);
+            buttonKitabiOduncVer.Name = "buttonKitabiOduncVer";
+            buttonKitabiOduncVer.Size = new Size(100, 39);
+            buttonKitabiOduncVer.TabIndex = 21;
+            buttonKitabiOduncVer.Text = "Kitabı Ödünç Ver";
+            buttonKitabiOduncVer.UseVisualStyleBackColor = true;
+            buttonKitabiOduncVer.Click += buttonKitabiOduncVer_Click;
             // 
             // Form2
             // 
@@ -368,5 +394,7 @@
         private Button button2;
         private Button button1;
         private Label label12;
+        private Label kitapid;
+        private Button buttonKitabiOduncVer;
     }
 }
