@@ -48,17 +48,17 @@
             label8 = new Label();
             textBoxOduncAlan = new TextBox();
             groupBox3 = new GroupBox();
+            button2 = new Button();
+            button1 = new Button();
+            label12 = new Label();
             label11 = new Label();
             label10 = new Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
-            label12 = new Label();
-            button1 = new Button();
-            button2 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -250,6 +250,34 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Kitap Iade";
             // 
+            // button2
+            // 
+            button2.Location = new Point(39, 162);
+            button2.Name = "button2";
+            button2.Size = new Size(100, 39);
+            button2.TabIndex = 20;
+            button2.Text = "Kitabı iade et";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(39, 104);
+            button1.Name = "button1";
+            button1.Size = new Size(100, 39);
+            button1.TabIndex = 13;
+            button1.Text = "Gecikme Bedeli hesapla";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(145, 54);
+            label12.Name = "label12";
+            label12.Size = new Size(20, 15);
+            label12.TabIndex = 19;
+            label12.Text = "TL";
+            label12.TextAlign = ContentAlignment.TopCenter;
+            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -269,13 +297,13 @@
             label10.TabIndex = 17;
             label10.Text = "Gecikme Bedeli:";
             // 
-            // dataGridView1
+            // dataGridViewKitaplar
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 332);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1022, 221);
-            dataGridView1.TabIndex = 3;
+            dataGridViewKitaplar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewKitaplar.Location = new Point(12, 332);
+            dataGridViewKitaplar.Name = "dataGridViewKitaplar";
+            dataGridViewKitaplar.Size = new Size(1022, 221);
+            dataGridViewKitaplar.TabIndex = 3;
             // 
             // label7
             // 
@@ -286,34 +314,6 @@
             label7.TabIndex = 4;
             label7.Text = "Kitap Listesi";
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(145, 54);
-            label12.Name = "label12";
-            label12.Size = new Size(20, 15);
-            label12.TabIndex = 19;
-            label12.Text = "TL";
-            label12.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(39, 104);
-            button1.Name = "button1";
-            button1.Size = new Size(100, 39);
-            button1.TabIndex = 13;
-            button1.Text = "Gecikme Bedeli hesapla";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(39, 162);
-            button2.Name = "button2";
-            button2.Size = new Size(100, 39);
-            button2.TabIndex = 20;
-            button2.Text = "Kitabı iade et";
-            button2.UseVisualStyleBackColor = true;
-            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -321,19 +321,20 @@
             BackColor = Color.FromArgb(255, 224, 192);
             ClientSize = new Size(1046, 565);
             Controls.Add(label7);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewKitaplar);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "Form2";
             Text = "Form2";
+            Load += Form2_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -360,7 +361,7 @@
         private Label label9;
         private Label label8;
         private TextBox textBoxOduncAlan;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewKitaplar;
         private Label label7;
         private Label label11;
         private Label label10;
