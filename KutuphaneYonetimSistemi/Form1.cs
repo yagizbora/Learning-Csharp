@@ -56,6 +56,11 @@ namespace KutuphaneYonetimSistemi
                 return;
             }
 
+            if(string.IsNullOrEmpty(textBoxSifre.Text) || string.IsNullOrEmpty(textBoxKullaniciAdi.Text))
+            {
+                MessageBox.Show("Kullanýcý adý veya þifre boþ olamaz");
+            }
+
             try
             {
                 connection.Open(); // Baðlantýyý aç
