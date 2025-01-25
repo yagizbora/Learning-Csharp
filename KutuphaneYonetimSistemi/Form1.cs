@@ -5,25 +5,29 @@ namespace KutuphaneYonetimSistemi
 {
     public partial class Form1 : Form
     {
-        Form2 formKitaplar; // Doðru nesne tanýmý
+      
 
         public Form1()
         {
             InitializeComponent();
         }
+
+        Form2? formKitaplar;
+
+        [Obsolete]
         SqlConnection connection;
 
+        [Obsolete]
         private void Form1_Load(object sender, EventArgs e)
         {
             try
             {
                 // .env dosyasýný yükle
                 Env.Load();
-
+               // Console.WriteLine("DB_CONNECTION_STRING: " + Env.GetString("DB_CONNECTION_STRING"));
                 // DB_CONNECTION_STRING deðerini kontrol et
-                string connectionString = @"Data Source=YAGIZ-PC\SQLEXPRESS;Initial Catalog=DbYTAKutuphane;Persist Security Info=True;User ID=library;Password=library;Encrypt=False;";
-                // that'll be fixed maybe method will change    
-                // string connectionString = Env.GetString("DB_CONNECTION_STRING");
+                // string connectionString = @"Data Source=YAGIZ-PC\SQLEXPRESS;Initial Catalog=DbYTAKutuphane;Persist Security Info=True;User ID=library;Password=library;Encrypt=False;";
+                string connectionString = Env.GetString("DB_CONNECTION_STRING");
                 // Console.WriteLine("Connection String: " + connectionString);
 
                 if (string.IsNullOrEmpty(connectionString))
@@ -40,6 +44,7 @@ namespace KutuphaneYonetimSistemi
             }
         }
 
+        [Obsolete]
         private void button1_Click(object sender, EventArgs e)
         {
             string sifre = string.Empty;
@@ -66,16 +71,16 @@ namespace KutuphaneYonetimSistemi
                 sqlcommand.Parameters.AddWithValue("@p1", textBoxKullaniciAdi.Text);
 
                 // SqlDataReader nesnesini kontrol edin
-                SqlDataReader sqlDataReader = sqlcommand.ExecuteReader();
-                if (sqlDataReader == null)
+                SqlDataReader response = sqlcommand.ExecuteReader();
+                if (response == null)
                 {
                     MessageBox.Show("Veri okunamadý. Lütfen veritabanýný kontrol edin.");
                     return;
                 }
 
-                if (sqlDataReader.Read())
+                if (response.Read())
                 {
-                    sifre = sqlDataReader[0].ToString();
+                    sifre = response[0].ToString();
                 }
                 else
                 {
