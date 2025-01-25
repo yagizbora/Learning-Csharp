@@ -44,6 +44,7 @@
             label2 = new Label();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            buttonKitabiOduncVer = new Button();
             dateTimePicker1 = new DateTimePicker();
             label9 = new Label();
             label8 = new Label();
@@ -52,11 +53,10 @@
             button2 = new Button();
             button1 = new Button();
             label12 = new Label();
-            label11 = new Label();
+            labelgecikmebedeli = new Label();
             label10 = new Label();
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
-            buttonKitabiOduncVer = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -218,6 +218,16 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Kitap Ödünç Alma";
             // 
+            // buttonKitabiOduncVer
+            // 
+            buttonKitabiOduncVer.Location = new Point(107, 138);
+            buttonKitabiOduncVer.Name = "buttonKitabiOduncVer";
+            buttonKitabiOduncVer.Size = new Size(100, 39);
+            buttonKitabiOduncVer.TabIndex = 21;
+            buttonKitabiOduncVer.Text = "Kitabı Ödünç Ver";
+            buttonKitabiOduncVer.UseVisualStyleBackColor = true;
+            buttonKitabiOduncVer.Click += buttonKitabiOduncVer_Click;
+            // 
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(107, 98);
@@ -255,7 +265,7 @@
             groupBox3.Controls.Add(button2);
             groupBox3.Controls.Add(button1);
             groupBox3.Controls.Add(label12);
-            groupBox3.Controls.Add(label11);
+            groupBox3.Controls.Add(labelgecikmebedeli);
             groupBox3.Controls.Add(label10);
             groupBox3.Location = new Point(685, 22);
             groupBox3.Name = "groupBox3";
@@ -272,6 +282,7 @@
             button2.TabIndex = 20;
             button2.Text = "Kitabı iade et";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -281,6 +292,7 @@
             button1.TabIndex = 13;
             button1.Text = "Gecikme Bedeli hesapla";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // label12
             // 
@@ -292,15 +304,15 @@
             label12.Text = "TL";
             label12.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label11
+            // labelgecikmebedeli
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(126, 54);
-            label11.Name = "label11";
-            label11.Size = new Size(13, 15);
-            label11.TabIndex = 18;
-            label11.Text = "0";
-            label11.Click += label11_Click;
+            labelgecikmebedeli.AutoSize = true;
+            labelgecikmebedeli.Location = new Point(126, 54);
+            labelgecikmebedeli.Name = "labelgecikmebedeli";
+            labelgecikmebedeli.Size = new Size(13, 15);
+            labelgecikmebedeli.TabIndex = 18;
+            labelgecikmebedeli.Text = "0";
+            labelgecikmebedeli.Click += label11_Click;
             // 
             // label10
             // 
@@ -329,16 +341,6 @@
             label7.Size = new Size(69, 15);
             label7.TabIndex = 4;
             label7.Text = "Kitap Listesi";
-            // 
-            // buttonKitabiOduncVer
-            // 
-            buttonKitabiOduncVer.Location = new Point(107, 138);
-            buttonKitabiOduncVer.Name = "buttonKitabiOduncVer";
-            buttonKitabiOduncVer.Size = new Size(100, 39);
-            buttonKitabiOduncVer.TabIndex = 21;
-            buttonKitabiOduncVer.Text = "Kitabı Ödünç Ver";
-            buttonKitabiOduncVer.UseVisualStyleBackColor = true;
-            buttonKitabiOduncVer.Click += buttonKitabiOduncVer_Click;
             // 
             // Form2
             // 
@@ -389,7 +391,7 @@
         private TextBox textBoxOduncAlan;
         private DataGridView dataGridViewKitaplar;
         private Label label7;
-        private Label label11;
+        private Label labelgecikmebedeli;
         private Label label10;
         private Button button2;
         private Button button1;

@@ -131,7 +131,7 @@ namespace KutuphaneYonetimSistemi
         {
             try
             {
-                if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))  
+                if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))
                 {
                     MessageBox.Show("Kitap seçmeden güncelleme işlemi yapılamaz!");
                 }
@@ -145,7 +145,7 @@ namespace KutuphaneYonetimSistemi
                     response.Parameters.AddWithValue("@p3", textBoxYazarSoyadi.Text);
                     response.Parameters.AddWithValue("@p4", textBoxISBN.Text);
                     response.Parameters.AddWithValue("@p5", textBoxKitapTurKodu.Text);
-                    response.Parameters.AddWithValue("@p6", kitapid.Text); 
+                    response.Parameters.AddWithValue("@p6", kitapid.Text);
                     response.ExecuteNonQuery();
                 }
             }
@@ -168,7 +168,7 @@ namespace KutuphaneYonetimSistemi
                 {
                     MessageBox.Show("Kitap seçmeden güncelleme işlemi yapılamaz!");
                 }
-                
+
                 else
                 {
                     connection.Open();
@@ -190,6 +190,69 @@ namespace KutuphaneYonetimSistemi
                 connection.Close();
             }
             showdata();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))
+                {
+                    MessageBox.Show("Kitap seçmeden hesaplama işlemi yapılamaz!");
+                }
+                else
+                {
+                    if (connection == null || connection.State == ConnectionState.Closed)
+                    {
+                        connection.Open();
+                    }
+
+                    // SQL komutunu oluştururken bağlantıyı belirtin
+                    SqlCommand response = new SqlCommand(
+                        "UPDATE TableKitaplar SET OduncAlan = @p1, OduncAlmaTarihi = @p2, Durum = @p3 WHERE ID = @p4",
+                        connection);
+
+                    // Parametreleri ekle
+                    response.Parameters.AddWithValue("@p1", DBNull.Value); 
+                    response.Parameters.Add("@p2", SqlDbType.Date).Value = DBNull.Value; 
+                    response.Parameters.AddWithValue("@p3", true); 
+                    response.Parameters.AddWithValue("@p4", kitapid.Text); 
+                    response.ExecuteNonQuery();
+                    textBoxOduncAlan.Text = "";
+                    dateTimePicker1.Value = DateTime.Now;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+            showdata();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))
+            {
+                MessageBox.Show("Kitap seçmeden hesaplama yapılamaz işlemi yapılamaz!");
+            }
+            else
+            {
+                DateTime todaydate = DateTime.Now;
+                int calculateday = (int)  (todaydate - dateTimePicker1.Value.Date).TotalDays;
+
+                if (calculateday > 10) 
+                {
+                    int delayallowance = (int) (calculateday - 10) * 1;
+                    labelgecikmebedeli.Text = delayallowance.ToString();
+                }
+            }
         }
     }
 }
