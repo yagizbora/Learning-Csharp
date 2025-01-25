@@ -97,8 +97,10 @@ namespace KutuphaneYonetimSistemi
 
                 if (sifre == textBoxSifre.Text)
                 {
-                    // Þifre doðru
-                    formKitaplar = new Form2(); 
+
+
+                    formKitaplar = new Form2();
+                    this.Hide();
                     formKitaplar.Show(); 
                                           
                 }

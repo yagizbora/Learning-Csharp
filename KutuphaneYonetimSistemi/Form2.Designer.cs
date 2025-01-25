@@ -355,6 +355,7 @@
             Controls.Add(groupBox1);
             Name = "Form2";
             Text = "Form2";
+            FormClosed += Form2_FormClosed;
             Load += Form2_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

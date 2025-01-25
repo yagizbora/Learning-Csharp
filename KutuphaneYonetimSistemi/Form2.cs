@@ -213,10 +213,10 @@ namespace KutuphaneYonetimSistemi
                         connection);
 
                     // Parametreleri ekle
-                    response.Parameters.AddWithValue("@p1", DBNull.Value); 
-                    response.Parameters.Add("@p2", SqlDbType.Date).Value = DBNull.Value; 
-                    response.Parameters.AddWithValue("@p3", true); 
-                    response.Parameters.AddWithValue("@p4", kitapid.Text); 
+                    response.Parameters.AddWithValue("@p1", DBNull.Value);
+                    response.Parameters.Add("@p2", SqlDbType.Date).Value = DBNull.Value;
+                    response.Parameters.AddWithValue("@p3", true);
+                    response.Parameters.AddWithValue("@p4", kitapid.Text);
                     response.ExecuteNonQuery();
                     textBoxOduncAlan.Text = "";
                     dateTimePicker1.Value = DateTime.Now;
@@ -245,14 +245,19 @@ namespace KutuphaneYonetimSistemi
             else
             {
                 DateTime todaydate = DateTime.Now;
-                int calculateday = (int)  (todaydate - dateTimePicker1.Value.Date).TotalDays;
+                int calculateday = (int)(todaydate - dateTimePicker1.Value.Date).TotalDays;
 
-                if (calculateday > 10) 
+                if (calculateday > 10)
                 {
-                    int delayallowance = (int) (calculateday - 10) * 1;
+                    int delayallowance = (int)(calculateday - 10) * 1;
                     labelgecikmebedeli.Text = delayallowance.ToString();
                 }
             }
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
