@@ -259,5 +259,76 @@ namespace KutuphaneYonetimSistemi
         {
             Application.Exit();
         }
+
+        private void buttonara_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                connection.Open();
+
+                string query = "SELECT * FROM TableKitaplar WHERE 1=1";
+
+                List<string> conditions = new List<string>();
+                SqlCommand command = new SqlCommand();
+                command.Connection = connection;
+
+                if (!string.IsNullOrWhiteSpace(textBoxKitapAdi.Text))
+                {
+                    conditions.Add("KitapAdi LIKE @KitapAdi");
+                    command.Parameters.AddWithValue("@KitapAdi", textBoxKitapAdi.Text + "%");
+                }
+                if (!string.IsNullOrWhiteSpace(textBoxYazarAdi.Text))
+                {
+                    conditions.Add("YazarAdi LIKE @YazarAdi");
+                    command.Parameters.AddWithValue("@YazarAdi", textBoxYazarAdi.Text + "%");
+                }
+                if (!string.IsNullOrWhiteSpace(textBoxYazarSoyadi.Text))
+                {
+                    conditions.Add("YazarSoyAdi LIKE @YazarSoyAdi");
+                    command.Parameters.AddWithValue("@YazarSoyAdi", textBoxYazarSoyadi.Text + "%");
+                }
+                if (!string.IsNullOrWhiteSpace(textBoxISBN.Text))
+                {
+                    conditions.Add("ISBN LIKE @ISBN");
+                    command.Parameters.AddWithValue("@ISBN", textBoxISBN.Text + "%");
+                }
+                if (!string.IsNullOrWhiteSpace(textBoxKitapTurKodu.Text))
+                {
+                    conditions.Add("KitapTurKodu LIKE @KitapTurKodu");
+                    command.Parameters.AddWithValue("@KitapTurKodu", textBoxKitapTurKodu.Text + "%");
+                }
+
+                if (conditions.Count > 0)
+                {
+                    query += " AND " + string.Join(" AND ", conditions);
+                }
+
+                command.CommandText = query;
+
+                SqlDataAdapter response = new SqlDataAdapter(command);
+                DataTable dt = new DataTable();
+                response.Fill(dt);
+
+                // Veri varsa DataGrid'e bağlanıyor
+                if (dt.Rows.Count > 0)
+                {
+                    dataGridViewKitaplar.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("Kayıt bulunamadı.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+
+        }
     }
 }

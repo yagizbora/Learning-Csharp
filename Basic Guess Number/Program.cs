@@ -4,82 +4,113 @@ namespace Basic_Guess_Number
 {
     internal class Program
     {
+        private const int MaxAttempts = 5;
+
         static void Main(string[] args)
         {
-            var startTime = DateTime.Now;
-
             Random random = new Random();
-            Console.WriteLine("Zorluk seçin: 1 - Kolay, 2 - Orta, 3 - Zor");
 
-            int difficulty = 0; 
-            bool isValidInput = false;
-
-            while (!isValidInput)
+            while (true)
             {
-                string difficultyInput = Console.ReadLine();
-                if (int.TryParse(difficultyInput, out difficulty) && (difficulty == 1 || difficulty == 2 || difficulty == 3))
+                int difficulty = GetDifficultyLevel();
+                int maxNumber = GetMaxNumber(difficulty);
+                int randomNumber = random.Next(1, maxNumber + 1);
+                DateTime startTime = DateTime.Now;
+
+                PlayGame(maxNumber, randomNumber, startTime);
+
+                Console.WriteLine("\nYeniden oynamak ister misiniz? (E/H)");
+                if (Console.ReadLine().ToUpper() != "E")
+                    break;
+            }
+        }
+
+        private static int GetDifficultyLevel()
+        {
+            Console.WriteLine("Zorluk seçin: 1 - Kolay (1-50), 2 - Orta (1-100), 3 - Zor (1-200)");
+
+            while (true)
+            {
+                Console.Write("Seçiminiz: ");
+                if (int.TryParse(Console.ReadLine(), out int difficulty) && difficulty >= 1 && difficulty <= 3)
+                    return difficulty;
+
+                Console.WriteLine("Geçersiz giriş! Lütfen 1, 2 veya 3 rakamlarını kullanın.");
+            }
+        }
+
+        private static int GetMaxNumber(int difficulty)
+        {
+            return difficulty switch
+            {
+                1 => 50,
+                2 => 100,
+                3 => 200,
+                _ => 100
+            };
+        }
+
+        private static void PlayGame(int maxNumber, int randomNumber, DateTime startTime)
+        {
+            int attempts = 0;
+            Console.WriteLine($"\n1 ile {maxNumber} arasında bir sayı tahmin edin!");
+            Console.WriteLine("Hazineyi bulmak için 5 deneme hakkınız var!");
+
+            while (attempts < MaxAttempts)
+            {
+                Console.Write($"\nTahmininiz ({attempts + 1}/{MaxAttempts}): ");
+                string input = Console.ReadLine();
+
+                if (!int.TryParse(input, out int guess))
                 {
-                    isValidInput = true; 
+                    Console.WriteLine("Lütfen geçerli bir sayı girin.");
+                    continue;
                 }
-                else
+
+                if (guess < 1 || guess > maxNumber)
                 {
-                    Console.WriteLine("Lütfen geçerli bir zorluk seviyesi seçin (1, 2 veya 3).");
+                    Console.WriteLine($"Lütfen 1 ile {maxNumber} arasında bir sayı girin!");
+                    continue;
+                }
+
+                attempts++;
+
+                if (CheckGuess(guess, randomNumber, attempts))
+                {
+                    ShowSuccessMessage(attempts, startTime);
+                    return;
                 }
             }
 
-            int range = difficulty == 1 ? 50 : difficulty == 2 ? 100 : 200;
-            int randomnumber = random.Next(1, range + 1);
-            int guess;
-            int attempts = 0;
-            Console.WriteLine("Bir hazineyi bulmaya çalışıyorsunuz! Doğru sayıyı tahmin edebilir misiniz?");
-            Console.WriteLine($"1 ile {range} arasında bir sayı tahmin edin!");
+            Console.WriteLine($"\nMaalesef bilemediniz. Doğru sayı: {randomNumber}");
+        }
 
-            do
+        private static bool CheckGuess(int guess, int targetNumber, int attempts)
+        {
+            if (guess == targetNumber) return true;
+
+            Console.WriteLine(guess < targetNumber
+                ? "Daha büyük bir sayı deneyin."
+                : "Daha küçük bir sayı deneyin.");
+
+            if (attempts % 3 == 0)
             {
-                isValidInput = false;
-                Console.Write("Tahmininiz: ");
-                string input = Console.ReadLine();
+                Console.WriteLine("İpucu: " + (targetNumber % 2 == 0
+                    ? "Sayı çifttir."
+                    : "Sayı tektir."));
+            }
 
-                if (int.TryParse(input, out guess))
-                {
-                    attempts++;
-                    isValidInput = true;
+            return false;
+        }
 
-                    if (attempts == 5 && guess != randomnumber)
-                    {
-                        Console.WriteLine($"Maalesef bilemediniz, doğru sayı {randomnumber}.");
-                        break;
-                    }
+        private static void ShowSuccessMessage(int attempts, DateTime startTime)
+        {
+            TimeSpan elapsedTime = DateTime.Now - startTime;
+            string timeInfo = $"{elapsedTime.TotalSeconds:0.0} saniye";
 
-                    if (guess != randomnumber)
-                    {
-                        if (guess < randomnumber)
-                            Console.WriteLine("Daha büyük bir sayı deneyin.");
-                        else if (guess > randomnumber)
-                            Console.WriteLine("Daha küçük bir sayı deneyin.");
-
-                        if (attempts % 3 == 0)
-                        {
-                            Console.WriteLine("İpucu: Sayı çift mi, tek mi?");
-                            Console.WriteLine(randomnumber % 2 == 0 ? "Sayı çifttir." : "Sayı tektir.");
-                        }
-                    }
-                    else if (attempts == 1)
-                    {
-                        Console.WriteLine($"Harika! İlk tahminde doğru bildiniz.");
-                    }
-                    else
-                    {
-                        var elapsedTime = DateTime.Now - startTime;
-                        Console.WriteLine($"Tebrikler! {attempts} tahminde ve {elapsedTime.TotalSeconds} saniyede doğru bildiniz.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Lütfen geçerli bir sayı girin.");
-                }
-
-            } while (guess != randomnumber && attempts < 5);
+            Console.WriteLine(attempts == 1
+                ? $"\nHarika! İlk tahminde bildiniz! ({timeInfo})"
+                : $"\nTebrikler! {attempts} denemede ve {timeInfo} sürede bildiniz!");
         }
     }
 }

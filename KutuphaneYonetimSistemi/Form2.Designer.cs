@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            buttonara = new Button();
             kitapid = new Label();
             buttonKitapBilgiGuncelle = new Button();
             buttonKitapEkle = new Button();
@@ -65,6 +66,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(buttonara);
             groupBox1.Controls.Add(kitapid);
             groupBox1.Controls.Add(buttonKitapBilgiGuncelle);
             groupBox1.Controls.Add(buttonKitapEkle);
@@ -79,13 +81,23 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(12, 22);
+            groupBox1.Location = new Point(43, 22);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(283, 279);
+            groupBox1.Size = new Size(370, 279);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Kayıt ve güncelleme";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // buttonara
+            // 
+            buttonara.Location = new Point(218, 234);
+            buttonara.Name = "buttonara";
+            buttonara.Size = new Size(100, 39);
+            buttonara.TabIndex = 14;
+            buttonara.Text = "Ara";
+            buttonara.UseVisualStyleBackColor = true;
+            buttonara.Click += buttonara_Click;
             // 
             // kitapid
             // 
@@ -97,7 +109,7 @@
             // 
             // buttonKitapBilgiGuncelle
             // 
-            buttonKitapBilgiGuncelle.Location = new Point(26, 234);
+            buttonKitapBilgiGuncelle.Location = new Point(6, 234);
             buttonKitapBilgiGuncelle.Name = "buttonKitapBilgiGuncelle";
             buttonKitapBilgiGuncelle.Size = new Size(100, 39);
             buttonKitapBilgiGuncelle.TabIndex = 12;
@@ -107,7 +119,7 @@
             // 
             // buttonKitapEkle
             // 
-            buttonKitapEkle.Location = new Point(144, 234);
+            buttonKitapEkle.Location = new Point(112, 234);
             buttonKitapEkle.Name = "buttonKitapEkle";
             buttonKitapEkle.Size = new Size(100, 39);
             buttonKitapEkle.TabIndex = 11;
@@ -211,9 +223,9 @@
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(textBoxOduncAlan);
-            groupBox2.Location = new Point(301, 22);
+            groupBox2.Location = new Point(419, 22);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(378, 257);
+            groupBox2.Size = new Size(291, 257);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Kitap Ödünç Alma";
@@ -267,7 +279,7 @@
             groupBox3.Controls.Add(label12);
             groupBox3.Controls.Add(labelgecikmebedeli);
             groupBox3.Controls.Add(label10);
-            groupBox3.Location = new Point(685, 22);
+            groupBox3.Location = new Point(716, 22);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(349, 257);
             groupBox3.TabIndex = 2;
@@ -329,7 +341,7 @@
             dataGridViewKitaplar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewKitaplar.Location = new Point(12, 332);
             dataGridViewKitaplar.Name = "dataGridViewKitaplar";
-            dataGridViewKitaplar.Size = new Size(1022, 221);
+            dataGridViewKitaplar.Size = new Size(1053, 221);
             dataGridViewKitaplar.TabIndex = 3;
             dataGridViewKitaplar.CellClick += dataGridViewKitaplar_CellClick;
             // 
@@ -347,7 +359,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 224, 192);
-            ClientSize = new Size(1046, 565);
+            ClientSize = new Size(1077, 565);
             Controls.Add(label7);
             Controls.Add(dataGridViewKitaplar);
             Controls.Add(groupBox3);
@@ -399,5 +411,6 @@
         private Label label12;
         private Label kitapid;
         private Button buttonKitabiOduncVer;
+        private Button buttonara;
     }
 }
