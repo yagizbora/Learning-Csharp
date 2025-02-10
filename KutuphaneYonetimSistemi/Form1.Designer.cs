@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             button1 = new Button();
             textBoxKullaniciAdi = new TextBox();
             textBoxSifre = new TextBox();
@@ -91,6 +92,7 @@
             Controls.Add(textBoxSifre);
             Controls.Add(textBoxKullaniciAdi);
             Controls.Add(button1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
             Text = "Kütüphane Yönetim Sistemi";
             Load += Form1_Load;

@@ -75,7 +75,20 @@ namespace KutuphaneYonetimSistemi
         {
             try
             {
+                connection.Open();
+                string query = "SELECT COUNT(KitapTurKodu) as count FROM TableKitaplar WHERE KitapTurKodu = @KitapTurKodu";
+                SqlCommand response = new SqlCommand(query, connection);
+                response.Parameters.AddWithValue("@KitapTurKodu", textBoxKitapTurKodu.Text);
 
+                int check = (int)response.ExecuteScalar(); 
+
+                if (check == 0)
+                {
+                    MessageBox.Show("Kitap Tür kodu yanlış");
+                    return;
+                }
+
+                // Boş alan kontrolü
                 if (string.IsNullOrWhiteSpace(textBoxKitapAdi.Text) ||
                     string.IsNullOrWhiteSpace(textBoxYazarAdi.Text) ||
                     string.IsNullOrWhiteSpace(textBoxYazarSoyadi.Text) ||
@@ -86,28 +99,33 @@ namespace KutuphaneYonetimSistemi
                     return;
                 }
 
-                connection.Open();
-                string query = "INSERT INTO TableKitaplar (KitapAdi, YazarAdi, YazarSoyadi, ISBN, Durum, KitapTurKodu) VALUES (@p1, @p2, @p3, @p4, @p5, @p6)";
-                SqlCommand response = new SqlCommand(query, connection);
-                response.Parameters.AddWithValue("@P1", textBoxKitapAdi.Text);
-                response.Parameters.AddWithValue("@P2", textBoxYazarAdi.Text);
-                response.Parameters.AddWithValue("@P3", textBoxYazarSoyadi.Text);
-                response.Parameters.AddWithValue("@P4", textBoxISBN.Text);
-                response.Parameters.AddWithValue("@P5", "True");
-                response.Parameters.AddWithValue("@P6", textBoxKitapTurKodu.Text);
+                string addquery = "INSERT INTO TableKitaplar (KitapAdi, YazarAdi, YazarSoyadi, ISBN, Durum, KitapTurKodu) " +
+                                  "VALUES (@p1, @p2, @p3, @p4, @p5, @p6)";
 
-                response.ExecuteNonQuery();
+                SqlCommand responses = new SqlCommand(addquery, connection);
+                responses.Parameters.AddWithValue("@p1", textBoxKitapAdi.Text);
+                responses.Parameters.AddWithValue("@p2", textBoxYazarAdi.Text);
+                responses.Parameters.AddWithValue("@p3", textBoxYazarSoyadi.Text);
+                responses.Parameters.AddWithValue("@p4", textBoxISBN.Text);
+                responses.Parameters.AddWithValue("@p5", "True");  // Sabit değer
+                responses.Parameters.AddWithValue("@p6", textBoxKitapTurKodu.Text);
+
+                responses.ExecuteNonQuery();
+                MessageBox.Show("Kitap başarıyla eklendi.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error" + ex.Message);
+                MessageBox.Show("Hata: " + ex.Message);
+                Console.WriteLine(ex.Message);
             }
             finally
             {
-                connection.Close();
+                connection.Close(); 
             }
-            showdata();
+
+            showdata(); 
         }
+
 
         private void dataGridViewKitaplar_CellClick(object sender, DataGridViewCellEventArgs e)
         {

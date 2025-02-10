@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             groupBox1 = new GroupBox();
+            buttonKitapSilme = new Button();
             buttonara = new Button();
             kitapid = new Label();
             buttonKitapBilgiGuncelle = new Button();
@@ -58,7 +60,6 @@
             label10 = new Label();
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
-            buttonKitapSilme = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -90,6 +91,16 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Kayıt ve güncelleme";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // buttonKitapSilme
+            // 
+            buttonKitapSilme.Location = new Point(324, 234);
+            buttonKitapSilme.Name = "buttonKitapSilme";
+            buttonKitapSilme.Size = new Size(84, 39);
+            buttonKitapSilme.TabIndex = 15;
+            buttonKitapSilme.Text = "Sil";
+            buttonKitapSilme.UseVisualStyleBackColor = true;
+            buttonKitapSilme.Click += buttonKitapSilme_Click;
             // 
             // buttonara
             // 
@@ -356,16 +367,6 @@
             label7.TabIndex = 4;
             label7.Text = "Kitap Listesi";
             // 
-            // buttonKitapSilme
-            // 
-            buttonKitapSilme.Location = new Point(324, 234);
-            buttonKitapSilme.Name = "buttonKitapSilme";
-            buttonKitapSilme.Size = new Size(84, 39);
-            buttonKitapSilme.TabIndex = 15;
-            buttonKitapSilme.Text = "Sil";
-            buttonKitapSilme.UseVisualStyleBackColor = true;
-            buttonKitapSilme.Click += buttonKitapSilme_Click;
-            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -377,6 +378,7 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form2";
             Text = "Form2";
             FormClosed += Form2_FormClosed;
