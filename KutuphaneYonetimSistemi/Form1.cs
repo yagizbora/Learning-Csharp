@@ -5,7 +5,7 @@ namespace KutuphaneYonetimSistemi
 {
     public partial class Form1 : Form
     {
-      
+
 
         public Form1()
         {
@@ -63,9 +63,8 @@ namespace KutuphaneYonetimSistemi
 
             try
             {
-                connection.Open(); // Baðlantýyý aç
+                connection.Open(); 
 
-                // SqlCommand nesnesini kontrol edin
                 if (string.IsNullOrEmpty(textBoxKullaniciAdi.Text))
                 {
                     MessageBox.Show("Kullanýcý adý boþ olamaz.");

@@ -1,14 +1,6 @@
 ﻿using DotNetEnv;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace KutuphaneYonetimSistemi
 {
@@ -32,6 +24,17 @@ namespace KutuphaneYonetimSistemi
             }
         }
 
+        public void showtypebook()
+        {
+            string query = "SELECT * FROM TableKitapTurleri";
+            SqlDataAdapter response = new SqlDataAdapter(query, connection);
+            DataTable dt = new DataTable();
+            response.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                dataGridView1.DataSource = dt;
+            }
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -54,6 +57,7 @@ namespace KutuphaneYonetimSistemi
                 if (!string.IsNullOrEmpty(connectionString))
                 {
                     showdata();
+                    showtypebook();
                 }
             }
             catch (Exception ex)
@@ -80,7 +84,7 @@ namespace KutuphaneYonetimSistemi
                 SqlCommand response = new SqlCommand(query, connection);
                 response.Parameters.AddWithValue("@KitapTurKodu", textBoxKitapTurKodu.Text);
 
-                int check = (int)response.ExecuteScalar(); 
+                int check = (int)response.ExecuteScalar();
 
                 if (check == 0)
                 {
@@ -120,10 +124,10 @@ namespace KutuphaneYonetimSistemi
             }
             finally
             {
-                connection.Close(); 
+                connection.Close();
             }
 
-            showdata(); 
+            showdata();
         }
 
 
@@ -209,7 +213,37 @@ namespace KutuphaneYonetimSistemi
             }
             showdata();
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(textBoxBookType.Text))
+            {
+                MessageBox.Show("Kitap Türü boş olamaz!");
+                return;
+            }
+            try
+            {
+                connection.Open();
+                string query = "INSERT INTO TableKitapTurleri (KitapTurKodu) VALUES(@BookType)";
 
+                SqlCommand request = new SqlCommand(query, connection);
+                request.Parameters.AddWithValue("@BookType", textBoxBookType.Text);
+                int response = request.ExecuteNonQuery();
+                if (response == 1) 
+                {
+                    textBoxBookType.Text = "";
+                    showtypebook();
+                }
+                
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Hata" + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -370,14 +404,14 @@ namespace KutuphaneYonetimSistemi
                     response.Parameters.AddWithValue("@id", kitapid.Text);
                     int affectedRows = response.ExecuteNonQuery();
 
-                    if (affectedRows > 0) 
+                    if (affectedRows > 0)
                     {
                         DialogResult result = MessageBox.Show("Kitap başarıyla silindi! Devam etmek ister misiniz?",
                                                              "Başarılı",
                                                              MessageBoxButtons.OKCancel,
                                                              MessageBoxIcon.Information);
 
-                        if (result == DialogResult.OK) 
+                        if (result == DialogResult.OK)
                         {
                             showdata();
                         }
@@ -402,5 +436,7 @@ namespace KutuphaneYonetimSistemi
 
             }
         }
+
+
     }
 }

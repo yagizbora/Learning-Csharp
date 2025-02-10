@@ -60,10 +60,17 @@
             label10 = new Label();
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
+            groupBox4 = new GroupBox();
+            dataGridView1 = new DataGridView();
+            textBoxBookType = new TextBox();
+            button3 = new Button();
+            label11 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).BeginInit();
+            groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -86,7 +93,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(43, 22);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(408, 279);
+            groupBox1.Size = new Size(408, 289);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Kayıt ve güncelleme";
@@ -236,7 +243,7 @@
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(textBoxOduncAlan);
-            groupBox2.Location = new Point(457, 22);
+            groupBox2.Location = new Point(810, 32);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(253, 279);
             groupBox2.TabIndex = 1;
@@ -292,7 +299,7 @@
             groupBox3.Controls.Add(label12);
             groupBox3.Controls.Add(labelgecikmebedeli);
             groupBox3.Controls.Add(label10);
-            groupBox3.Location = new Point(716, 22);
+            groupBox3.Location = new Point(1069, 28);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(349, 273);
             groupBox3.TabIndex = 2;
@@ -354,7 +361,7 @@
             dataGridViewKitaplar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewKitaplar.Location = new Point(12, 332);
             dataGridViewKitaplar.Name = "dataGridViewKitaplar";
-            dataGridViewKitaplar.Size = new Size(1053, 221);
+            dataGridViewKitaplar.Size = new Size(1406, 221);
             dataGridViewKitaplar.TabIndex = 3;
             dataGridViewKitaplar.CellClick += dataGridViewKitaplar_CellClick;
             // 
@@ -367,12 +374,61 @@
             label7.TabIndex = 4;
             label7.Text = "Kitap Listesi";
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(label11);
+            groupBox4.Controls.Add(button3);
+            groupBox4.Controls.Add(textBoxBookType);
+            groupBox4.Controls.Add(dataGridView1);
+            groupBox4.Location = new Point(467, 28);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(337, 283);
+            groupBox4.TabIndex = 5;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Kitap Türleri";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(6, 142);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(325, 135);
+            dataGridView1.TabIndex = 0;
+            // 
+            // textBoxBookType
+            // 
+            textBoxBookType.Location = new Point(6, 93);
+            textBoxBookType.Name = "textBoxBookType";
+            textBoxBookType.Size = new Size(175, 23);
+            textBoxBookType.TabIndex = 1;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(209, 81);
+            button3.Name = "button3";
+            button3.Size = new Size(93, 44);
+            button3.TabIndex = 2;
+            button3.Text = "Kitap Türü Ekle";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 66);
+            label11.Name = "label11";
+            label11.Size = new Size(62, 15);
+            label11.TabIndex = 3;
+            label11.Text = "Kitap Türü";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 224, 192);
-            ClientSize = new Size(1077, 565);
+            ClientSize = new Size(1430, 565);
+            Controls.Add(groupBox4);
             Controls.Add(label7);
             Controls.Add(dataGridViewKitaplar);
             Controls.Add(groupBox3);
@@ -390,6 +446,9 @@
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewKitaplar).EndInit();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -427,5 +486,10 @@
         private Button buttonKitabiOduncVer;
         private Button buttonara;
         private Button buttonKitapSilme;
+        private GroupBox groupBox4;
+        private DataGridView dataGridView1;
+        private Label label11;
+        private Button button3;
+        private TextBox textBoxBookType;
     }
 }
