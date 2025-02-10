@@ -80,7 +80,7 @@ namespace KutuphaneYonetimSistemi
             try
             {
                 connection.Open();
-                string query = "SELECT COUNT(KitapTurKodu) as count FROM TableKitaplar WHERE KitapTurKodu = @KitapTurKodu";
+                string query = "SELECT COUNT(*) as count FROM TableKitapTurleri WHERE KitapTurKodu = @KitapTurKodu";
                 SqlCommand response = new SqlCommand(query, connection);
                 response.Parameters.AddWithValue("@KitapTurKodu", textBoxKitapTurKodu.Text);
 
@@ -111,7 +111,7 @@ namespace KutuphaneYonetimSistemi
                 responses.Parameters.AddWithValue("@p2", textBoxYazarAdi.Text);
                 responses.Parameters.AddWithValue("@p3", textBoxYazarSoyadi.Text);
                 responses.Parameters.AddWithValue("@p4", textBoxISBN.Text);
-                responses.Parameters.AddWithValue("@p5", "True");  // Sabit değer
+                responses.Parameters.AddWithValue("@p5", "True");  
                 responses.Parameters.AddWithValue("@p6", textBoxKitapTurKodu.Text);
 
                 responses.ExecuteNonQuery();
@@ -223,7 +223,7 @@ namespace KutuphaneYonetimSistemi
             try
             {
                 connection.Open();
-                string query = "INSERT INTO TableKitapTurleri (KitapTurKodu) VALUES(@BookType)";
+                string query = "INSERT INTO TableKitapTurleri (Aciklama) VALUES(@BookType)";
 
                 SqlCommand request = new SqlCommand(query, connection);
                 request.Parameters.AddWithValue("@BookType", textBoxBookType.Text);
@@ -259,7 +259,6 @@ namespace KutuphaneYonetimSistemi
                         connection.Open();
                     }
 
-                    // SQL komutunu oluştururken bağlantıyı belirtin
                     SqlCommand response = new SqlCommand(
                         "UPDATE TableKitaplar SET OduncAlan = @p1, OduncAlmaTarihi = @p2, Durum = @p3 WHERE ID = @p4",
                         connection);
