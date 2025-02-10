@@ -330,5 +330,59 @@ namespace KutuphaneYonetimSistemi
 
 
         }
+
+        private void buttonKitapSilme_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))
+                {
+                    MessageBox.Show("Kitap seçmeden hesaplama işlemi yapılamaz!");
+                }
+                else
+                {
+                    if (connection == null || connection.State == ConnectionState.Closed)
+                    {
+                        connection.Open();
+                    }
+                    string query = "DELETE FROM TableKitaplar WHERE ID = @id";
+                    SqlCommand response = new SqlCommand(query, connection);
+                    response.Parameters.AddWithValue("@id", kitapid.Text);
+                    int affectedRows = response.ExecuteNonQuery();
+
+                    if (affectedRows > 0) 
+                    {
+                        DialogResult result = MessageBox.Show("Kitap başarıyla silindi! Devam etmek ister misiniz?",
+                                                             "Başarılı",
+                                                             MessageBoxButtons.OKCancel,
+                                                             MessageBoxIcon.Information);
+
+                        if (result == DialogResult.OK) 
+                        {
+                            showdata();
+                        }
+                        else
+                        {
+                            showdata();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Silinecek kitap bulunamadı!", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(text: "Hata" + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+        }
     }
 }

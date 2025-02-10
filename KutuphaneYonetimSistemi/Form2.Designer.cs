@@ -58,6 +58,7 @@
             label10 = new Label();
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
+            buttonKitapSilme = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -66,6 +67,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(buttonKitapSilme);
             groupBox1.Controls.Add(buttonara);
             groupBox1.Controls.Add(kitapid);
             groupBox1.Controls.Add(buttonKitapBilgiGuncelle);
@@ -83,7 +85,7 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(43, 22);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(370, 279);
+            groupBox1.Size = new Size(408, 279);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Kayıt ve güncelleme";
@@ -223,9 +225,9 @@
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(textBoxOduncAlan);
-            groupBox2.Location = new Point(419, 22);
+            groupBox2.Location = new Point(457, 22);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(291, 257);
+            groupBox2.Size = new Size(253, 279);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Kitap Ödünç Alma";
@@ -281,7 +283,7 @@
             groupBox3.Controls.Add(label10);
             groupBox3.Location = new Point(716, 22);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(349, 257);
+            groupBox3.Size = new Size(349, 273);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Kitap Iade";
@@ -354,6 +356,16 @@
             label7.TabIndex = 4;
             label7.Text = "Kitap Listesi";
             // 
+            // buttonKitapSilme
+            // 
+            buttonKitapSilme.Location = new Point(324, 234);
+            buttonKitapSilme.Name = "buttonKitapSilme";
+            buttonKitapSilme.Size = new Size(84, 39);
+            buttonKitapSilme.TabIndex = 15;
+            buttonKitapSilme.Text = "Sil";
+            buttonKitapSilme.UseVisualStyleBackColor = true;
+            buttonKitapSilme.Click += buttonKitapSilme_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -412,5 +424,6 @@
         private Label kitapid;
         private Button buttonKitabiOduncVer;
         private Button buttonara;
+        private Button buttonKitapSilme;
     }
 }
