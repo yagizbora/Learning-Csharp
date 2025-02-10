@@ -12,29 +12,6 @@ namespace KutuphaneYonetimSistemi
         }
         SqlConnection connection;
 
-        public void showdata()
-        {
-            string query = "SELECT * FROM TableKitaplar";
-            SqlDataAdapter response = new SqlDataAdapter(query, connection);
-            DataTable dt = new DataTable();
-            response.Fill(dt);
-            if (dt.Rows.Count > 0)
-            {
-                dataGridViewKitaplar.DataSource = dt;
-            }
-        }
-
-        public void showtypebook()
-        {
-            string query = "SELECT * FROM TableKitapTurleri";
-            SqlDataAdapter response = new SqlDataAdapter(query, connection);
-            DataTable dt = new DataTable();
-            response.Fill(dt);
-            if (dt.Rows.Count > 0)
-            {
-                dataGridView1.DataSource = dt;
-            }
-        }
         private void Form2_Load(object sender, EventArgs e)
         {
 
@@ -433,6 +410,28 @@ namespace KutuphaneYonetimSistemi
             }
         }
 
+        public void showdata()
+        {
+            string query = "SELECT * FROM TableKitaplar";
+            SqlDataAdapter response = new SqlDataAdapter(query, connection);
+            DataTable dt = new DataTable();
+            response.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                dataGridViewKitaplar.DataSource = dt;
+            }
+        }
 
+        public void showtypebook()
+        {
+            string query = "SELECT * FROM TableKitapTurleri";
+            SqlDataAdapter response = new SqlDataAdapter(query, connection);
+            DataTable dt = new DataTable();
+            response.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                dataGridView1.DataSource = dt;
+            }
+        }
     }
 }
