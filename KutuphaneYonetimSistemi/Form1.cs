@@ -22,13 +22,8 @@ namespace KutuphaneYonetimSistemi
         {
             try
             {
-                // .env dosyasýný yükle
                 Env.Load();
-                // Console.WriteLine("DB_CONNECTION_STRING: " + Env.GetString("DB_CONNECTION_STRING"));
-                // DB_CONNECTION_STRING deðerini kontrol et
-                // string connectionString = @"Data Source=YAGIZ-PC\SQLEXPRESS;Initial Catalog=DbYTAKutuphane;Persist Security Info=True;User ID=library;Password=library;Encrypt=False;";
                 string connectionString = Env.GetString("DB_CONNECTION_STRING");
-                // Console.WriteLine("Connection String: " + connectionString);
 
                 if (string.IsNullOrEmpty(connectionString))
                 {
@@ -49,7 +44,6 @@ namespace KutuphaneYonetimSistemi
         {
             string sifre = string.Empty;
 
-            // SqlConnection nesnesinin null olmadýðýný kontrol edin
             if (connection == null)
             {
                 MessageBox.Show("Baðlantý nesnesi null. Lütfen baðlantýyý kontrol edin.");
@@ -74,7 +68,6 @@ namespace KutuphaneYonetimSistemi
                 SqlCommand sqlcommand = new SqlCommand("SELECT Sifre FROM TableKutuphaneYoneticileri WHERE KullaniciAdi = @p1", connection);
                 sqlcommand.Parameters.AddWithValue("@p1", textBoxKullaniciAdi.Text);
 
-                // SqlDataReader nesnesini kontrol edin
                 SqlDataReader response = sqlcommand.ExecuteReader();
                 if (response == null)
                 {
