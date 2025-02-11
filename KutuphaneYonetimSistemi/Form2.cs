@@ -496,7 +496,7 @@ namespace KutuphaneYonetimSistemi
             }
 
             int chooseline = dataGridView1.SelectedCells[0].RowIndex;
-            string? id = dataGridView1.Rows[chooseline].Cells[0].Value?.ToString(); 
+            string? id = dataGridView1.Rows[chooseline].Cells[0].Value?.ToString();
 
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -513,20 +513,28 @@ namespace KutuphaneYonetimSistemi
                 response.Parameters.AddWithValue("@id", id);
                 int checkresult = response.ExecuteNonQuery();
 
-                if (checkresult > 0) 
+                if (checkresult > 0)
                 {
                     MessageBox.Show("Kitap Türü başarı ile silindi");
                     Showtypebook();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Hata" + ex.Message);
             }
-            finally 
+            finally
             {
                 connection.Close();
             }
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            int chooseline = dataGridView1.SelectedCells[0].RowIndex;
+            string? id = dataGridView1.Rows[chooseline].Cells[0].Value?.ToString();
+
+            textBoxKitapTurKodu.Text = id.ToString();
         }
     }
 }
