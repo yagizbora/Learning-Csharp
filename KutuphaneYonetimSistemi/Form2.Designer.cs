@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             groupBox1 = new GroupBox();
+            buttonClearFilter = new Button();
             buttonKitapSilme = new Button();
             buttonara = new Button();
             kitapid = new Label();
@@ -61,10 +62,10 @@
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
             groupBox4 = new GroupBox();
-            dataGridView1 = new DataGridView();
-            textBoxBookType = new TextBox();
-            button3 = new Button();
             label11 = new Label();
+            button3 = new Button();
+            textBoxBookType = new TextBox();
+            dataGridView1 = new DataGridView();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -75,6 +76,7 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(buttonClearFilter);
             groupBox1.Controls.Add(buttonKitapSilme);
             groupBox1.Controls.Add(buttonara);
             groupBox1.Controls.Add(kitapid);
@@ -91,17 +93,27 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Location = new Point(43, 22);
+            groupBox1.Location = new Point(12, 22);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(408, 289);
+            groupBox1.Size = new Size(587, 283);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kitap Kayıt ve güncelleme";
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // buttonClearFilter
+            // 
+            buttonClearFilter.Location = new Point(324, 234);
+            buttonClearFilter.Name = "buttonClearFilter";
+            buttonClearFilter.Size = new Size(84, 39);
+            buttonClearFilter.TabIndex = 16;
+            buttonClearFilter.Text = "Temizle";
+            buttonClearFilter.UseVisualStyleBackColor = true;
+            buttonClearFilter.Click += buttonClearFilter_Click;
+            // 
             // buttonKitapSilme
             // 
-            buttonKitapSilme.Location = new Point(324, 234);
+            buttonKitapSilme.Location = new Point(414, 234);
             buttonKitapSilme.Name = "buttonKitapSilme";
             buttonKitapSilme.Size = new Size(84, 39);
             buttonKitapSilme.TabIndex = 15;
@@ -124,8 +136,9 @@
             kitapid.AutoSize = true;
             kitapid.Location = new Point(98, 28);
             kitapid.Name = "kitapid";
-            kitapid.Size = new Size(0, 15);
+            kitapid.Size = new Size(12, 15);
             kitapid.TabIndex = 13;
+            kitapid.Text = "-";
             // 
             // buttonKitapBilgiGuncelle
             // 
@@ -177,7 +190,7 @@
             // 
             // textBoxKitapAdi
             // 
-            textBoxKitapAdi.Location = new Point(98, 59);
+            textBoxKitapAdi.Location = new Point(98, 61);
             textBoxKitapAdi.Name = "textBoxKitapAdi";
             textBoxKitapAdi.Size = new Size(100, 23);
             textBoxKitapAdi.TabIndex = 6;
@@ -243,7 +256,7 @@
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(textBoxOduncAlan);
-            groupBox2.Location = new Point(810, 32);
+            groupBox2.Location = new Point(958, 26);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(253, 279);
             groupBox2.TabIndex = 1;
@@ -299,9 +312,9 @@
             groupBox3.Controls.Add(label12);
             groupBox3.Controls.Add(labelgecikmebedeli);
             groupBox3.Controls.Add(label10);
-            groupBox3.Location = new Point(1069, 28);
+            groupBox3.Location = new Point(1217, 28);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(349, 273);
+            groupBox3.Size = new Size(211, 273);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Kitap Iade";
@@ -329,7 +342,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(145, 54);
+            label12.Location = new Point(160, 54);
             label12.Name = "label12";
             label12.Size = new Size(20, 15);
             label12.TabIndex = 19;
@@ -361,7 +374,7 @@
             dataGridViewKitaplar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewKitaplar.Location = new Point(12, 332);
             dataGridViewKitaplar.Name = "dataGridViewKitaplar";
-            dataGridViewKitaplar.Size = new Size(1406, 221);
+            dataGridViewKitaplar.Size = new Size(1416, 221);
             dataGridViewKitaplar.TabIndex = 3;
             dataGridViewKitaplar.CellClick += dataGridViewKitaplar_CellClick;
             // 
@@ -380,28 +393,21 @@
             groupBox4.Controls.Add(button3);
             groupBox4.Controls.Add(textBoxBookType);
             groupBox4.Controls.Add(dataGridView1);
-            groupBox4.Location = new Point(467, 28);
+            groupBox4.Location = new Point(605, 22);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(337, 283);
             groupBox4.TabIndex = 5;
             groupBox4.TabStop = false;
             groupBox4.Text = "Kitap Türleri";
             // 
-            // dataGridView1
+            // label11
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 142);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(325, 135);
-            dataGridView1.TabIndex = 0;
-            // 
-            // textBoxBookType
-            // 
-            textBoxBookType.Location = new Point(6, 93);
-            textBoxBookType.Name = "textBoxBookType";
-            textBoxBookType.Size = new Size(175, 23);
-            textBoxBookType.TabIndex = 1;
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 66);
+            label11.Name = "label11";
+            label11.Size = new Size(62, 15);
+            label11.TabIndex = 3;
+            label11.Text = "Kitap Türü";
             // 
             // button3
             // 
@@ -413,27 +419,34 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
-            // label11
+            // textBoxBookType
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(6, 66);
-            label11.Name = "label11";
-            label11.Size = new Size(62, 15);
-            label11.TabIndex = 3;
-            label11.Text = "Kitap Türü";
+            textBoxBookType.Location = new Point(6, 93);
+            textBoxBookType.Name = "textBoxBookType";
+            textBoxBookType.Size = new Size(175, 23);
+            textBoxBookType.TabIndex = 1;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(6, 142);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(325, 135);
+            dataGridView1.TabIndex = 0;
             // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 224, 192);
-            ClientSize = new Size(1430, 565);
+            ClientSize = new Size(1440, 565);
+            Controls.Add(groupBox1);
             Controls.Add(groupBox4);
             Controls.Add(label7);
             Controls.Add(dataGridViewKitaplar);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form2";
             Text = "Form2";
@@ -491,5 +504,6 @@
         private Label label11;
         private Button button3;
         private TextBox textBoxBookType;
+        private Button buttonClearFilter;
     }
 }
