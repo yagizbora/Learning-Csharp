@@ -487,6 +487,46 @@ namespace KutuphaneYonetimSistemi
             }
         }
 
-  
+        private void buttonDeleteBookType_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Lütfen bir satır seçin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int chooseline = dataGridView1.SelectedCells[0].RowIndex;
+            string? id = dataGridView1.Rows[chooseline].Cells[0].Value?.ToString(); 
+
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                MessageBox.Show("Lütfen Kitap Türü seçin!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                connection.Open();
+
+                string query = "DELETE FROM TableKitapTurleri WHERE KitapTurKodu = @id";
+                SqlCommand response = new(query, connection);
+                response.Parameters.AddWithValue("@id", id);
+                int checkresult = response.ExecuteNonQuery();
+
+                if (checkresult > 0) 
+                {
+                    MessageBox.Show("Kitap Türü başarı ile silindi");
+                    Showtypebook();
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Hata" + ex.Message);
+            }
+            finally 
+            {
+                connection.Close();
+            }
+        }
     }
 }

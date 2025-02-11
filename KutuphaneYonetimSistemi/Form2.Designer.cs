@@ -66,6 +66,7 @@
             button3 = new Button();
             textBoxBookType = new TextBox();
             dataGridView1 = new DataGridView();
+            buttonDeleteBookType = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -389,6 +390,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(buttonDeleteBookType);
             groupBox4.Controls.Add(label11);
             groupBox4.Controls.Add(button3);
             groupBox4.Controls.Add(textBoxBookType);
@@ -411,9 +413,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(212, 49);
+            button3.Location = new Point(212, 44);
             button3.Name = "button3";
-            button3.Size = new Size(93, 28);
+            button3.Size = new Size(93, 41);
             button3.TabIndex = 2;
             button3.Text = "Kitap Türü Ekle";
             button3.UseVisualStyleBackColor = true;
@@ -434,6 +436,16 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(325, 135);
             dataGridView1.TabIndex = 0;
+            // 
+            // buttonDeleteBookType
+            // 
+            buttonDeleteBookType.Location = new Point(6, 239);
+            buttonDeleteBookType.Name = "buttonDeleteBookType";
+            buttonDeleteBookType.Size = new Size(93, 28);
+            buttonDeleteBookType.TabIndex = 4;
+            buttonDeleteBookType.Text = "Kitap Türü Sil";
+            buttonDeleteBookType.UseVisualStyleBackColor = true;
+            buttonDeleteBookType.Click += buttonDeleteBookType_Click;
             // 
             // Form2
             // 
@@ -505,5 +517,6 @@
         private Button button3;
         private TextBox textBoxBookType;
         private Button buttonClearFilter;
+        private Button buttonDeleteBookType;
     }
 }
