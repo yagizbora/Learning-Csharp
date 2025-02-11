@@ -11,7 +11,7 @@ namespace KutuphaneYonetimSistemi
         [Obsolete]
         public void Showdata()
         {
-            string query = "SELECT * FROM TableKitaplar";
+            string query = "SELECT book.*, booktype.Aciklama FROM TableKitaplar book JOIN TableKitapTurleri booktype ON booktype.KitapTurKodu = book.KitapTurKodu";
             SqlDataAdapter response = new(query, connection);
             DataTable dt = new DataTable();
             response.Fill(dt);
