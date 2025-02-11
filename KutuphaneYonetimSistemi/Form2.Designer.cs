@@ -62,11 +62,11 @@
             dataGridViewKitaplar = new DataGridView();
             label7 = new Label();
             groupBox4 = new GroupBox();
+            buttonDeleteBookType = new Button();
             label11 = new Label();
             button3 = new Button();
             textBoxBookType = new TextBox();
             dataGridView1 = new DataGridView();
-            buttonDeleteBookType = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -402,6 +402,16 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Kitap Türleri";
             // 
+            // buttonDeleteBookType
+            // 
+            buttonDeleteBookType.Location = new Point(6, 239);
+            buttonDeleteBookType.Name = "buttonDeleteBookType";
+            buttonDeleteBookType.Size = new Size(93, 28);
+            buttonDeleteBookType.TabIndex = 4;
+            buttonDeleteBookType.Text = "Kitap Türü Sil";
+            buttonDeleteBookType.UseVisualStyleBackColor = true;
+            buttonDeleteBookType.Click += buttonDeleteBookType_Click;
+            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -436,16 +446,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(325, 135);
             dataGridView1.TabIndex = 0;
-            // 
-            // buttonDeleteBookType
-            // 
-            buttonDeleteBookType.Location = new Point(6, 239);
-            buttonDeleteBookType.Name = "buttonDeleteBookType";
-            buttonDeleteBookType.Size = new Size(93, 28);
-            buttonDeleteBookType.TabIndex = 4;
-            buttonDeleteBookType.Text = "Kitap Türü Sil";
-            buttonDeleteBookType.UseVisualStyleBackColor = true;
-            buttonDeleteBookType.Click += buttonDeleteBookType_Click;
+            dataGridView1.Click += dataGridView1_Click;
             // 
             // Form2
             // 
