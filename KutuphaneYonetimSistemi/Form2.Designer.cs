@@ -403,7 +403,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(6, 66);
+            label11.Location = new Point(6, 28);
             label11.Name = "label11";
             label11.Size = new Size(62, 15);
             label11.TabIndex = 3;
@@ -411,9 +411,9 @@
             // 
             // button3
             // 
-            button3.Location = new Point(209, 81);
+            button3.Location = new Point(212, 49);
             button3.Name = "button3";
-            button3.Size = new Size(93, 44);
+            button3.Size = new Size(93, 28);
             button3.TabIndex = 2;
             button3.Text = "Kitap Türü Ekle";
             button3.UseVisualStyleBackColor = true;
@@ -421,7 +421,7 @@
             // 
             // textBoxBookType
             // 
-            textBoxBookType.Location = new Point(6, 93);
+            textBoxBookType.Location = new Point(6, 54);
             textBoxBookType.Name = "textBoxBookType";
             textBoxBookType.Size = new Size(175, 23);
             textBoxBookType.TabIndex = 1;
@@ -430,7 +430,7 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 142);
+            dataGridView1.Location = new Point(6, 96);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(325, 135);
             dataGridView1.TabIndex = 0;
@@ -449,7 +449,7 @@
             Controls.Add(groupBox2);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form2";
-            Text = "Form2";
+            Text = "Kütüphane Yönetim Paneli";
             FormClosed += Form2_FormClosed;
             Load += Form2_Load;
             groupBox1.ResumeLayout(false);

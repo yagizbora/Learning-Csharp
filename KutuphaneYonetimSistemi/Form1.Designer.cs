@@ -94,7 +94,7 @@
             Controls.Add(button1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Kütüphane Yönetim Sistemi";
+            Text = "Kütüphane Yönetim Sistemi Giriş Ekranı";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
