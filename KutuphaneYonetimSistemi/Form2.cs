@@ -1,7 +1,7 @@
 ﻿using DotNetEnv;
+using Sprache;
 using System.Data;
 using System.Data.SqlClient;
-using System.Security.Cryptography.X509Certificates;
 
 namespace KutuphaneYonetimSistemi
 {
@@ -147,13 +147,13 @@ namespace KutuphaneYonetimSistemi
         private void dataGridViewKitaplar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int chooseline = dataGridViewKitaplar.SelectedCells[0].RowIndex;
-            kitapid.Text = dataGridViewKitaplar.Rows[chooseline].Cells[0].Value.ToString();
-            textBoxKitapAdi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[1].Value.ToString();
-            textBoxYazarAdi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[2].Value.ToString();
-            textBoxYazarSoyadi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[3].Value.ToString();
-            textBoxISBN.Text = dataGridViewKitaplar.Rows[chooseline].Cells[4].Value.ToString();
-            textBoxKitapTurKodu.Text = dataGridViewKitaplar.Rows[chooseline].Cells[8].Value.ToString();
-            textBoxOduncAlan.Text = dataGridViewKitaplar.Rows[chooseline].Cells[6].Value.ToString();
+            kitapid.Text = dataGridViewKitaplar.Rows[chooseline].Cells[0].Value?.ToString();
+            textBoxKitapAdi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[1].Value?.ToString();
+            textBoxYazarAdi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[2].Value?.ToString();
+            textBoxYazarSoyadi.Text = dataGridViewKitaplar.Rows[chooseline].Cells[3].Value?.ToString();
+            textBoxISBN.Text = dataGridViewKitaplar.Rows[chooseline].Cells[4].Value?.ToString();
+            textBoxKitapTurKodu.Text = dataGridViewKitaplar.Rows[chooseline].Cells[8].Value?.ToString();
+            textBoxOduncAlan.Text = dataGridViewKitaplar.Rows[chooseline].Cells[6].Value?.ToString();
 
             if (dataGridViewKitaplar.Rows[chooseline].Cells[7].Value != DBNull.Value)
             {
@@ -393,20 +393,61 @@ namespace KutuphaneYonetimSistemi
 
 
         }
+        private bool IsBookAvailable( int id)
+        {
+            try
+            {
+                if (connection == null || connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                string query = "SELECT Durum FROM TableKitaplar WHERE ID = @id";
+                SqlCommand response = new(query, connection);
+                response.Parameters.AddWithValue("id", id);
+
+                object result = response.ExecuteScalar();
+
+                if (result != null) {
+                    bool isAvailable = Convert.ToBoolean(result); 
+                    return isAvailable; 
+                }
+                else
+                {
+                    MessageBox.Show("Kitap bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
 
         [Obsolete]
         private void buttonKitapSilme_Click(object sender, EventArgs e)
         {
             try
             {
-
-
                 if (kitapid.Text == "-" || string.IsNullOrEmpty(kitapid.Text))
                 {
                     MessageBox.Show("Kitap seçmeden hesaplama işlemi yapılamaz!");
                 }
                 else
                 {
+                    int kitapId = int.Parse(kitapid.Text);
+                    if (!IsBookAvailable(kitapId)) 
+                    {
+                        MessageBox.Show("Bu kitap ödünç alınamaz! Silinemez!", "Uyarı!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     if (connection == null || connection.State == ConnectionState.Closed)
                     {
                         connection.Open();
