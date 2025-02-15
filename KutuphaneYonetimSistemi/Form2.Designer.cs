@@ -67,6 +67,7 @@
             button3 = new Button();
             textBoxBookType = new TextBox();
             dataGridView1 = new DataGridView();
+            printDialog1 = new PrintDialog();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -280,6 +281,7 @@
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(137, 23);
             dateTimePicker1.TabIndex = 16;
+            dateTimePicker1.Value = new DateTime(2025, 2, 15, 11, 4, 5, 0);
             // 
             // label9
             // 
@@ -315,7 +317,7 @@
             groupBox3.Controls.Add(label10);
             groupBox3.Location = new Point(1217, 28);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(211, 273);
+            groupBox3.Size = new Size(211, 277);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Kitap Iade";
@@ -375,7 +377,7 @@
             dataGridViewKitaplar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewKitaplar.Location = new Point(12, 332);
             dataGridViewKitaplar.Name = "dataGridViewKitaplar";
-            dataGridViewKitaplar.Size = new Size(1416, 221);
+            dataGridViewKitaplar.Size = new Size(1416, 257);
             dataGridViewKitaplar.TabIndex = 3;
             dataGridViewKitaplar.CellClick += dataGridViewKitaplar_CellClick;
             // 
@@ -448,12 +450,16 @@
             dataGridView1.TabIndex = 0;
             dataGridView1.Click += dataGridView1_Click;
             // 
+            // printDialog1
+            // 
+            printDialog1.UseEXDialog = true;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 224, 192);
-            ClientSize = new Size(1440, 565);
+            ClientSize = new Size(1434, 601);
             Controls.Add(groupBox1);
             Controls.Add(groupBox4);
             Controls.Add(label7);
@@ -461,6 +467,7 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "Form2";
             Text = "Kütüphane Yönetim Paneli";
             FormClosed += Form2_FormClosed;
@@ -519,5 +526,6 @@
         private TextBox textBoxBookType;
         private Button buttonClearFilter;
         private Button buttonDeleteBookType;
+        private PrintDialog printDialog1;
     }
 }

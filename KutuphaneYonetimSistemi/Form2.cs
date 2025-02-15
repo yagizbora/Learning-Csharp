@@ -38,6 +38,45 @@ namespace KutuphaneYonetimSistemi
         {
             return kitapId == "-";
         }
+
+        [Obsolete]
+        private bool IsBookAvailable(int id)
+        {
+            try
+            {
+                if (connection == null || connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                string query = "SELECT Durum FROM TableKitaplar WHERE ID = @id";
+                SqlCommand response = new(query, connection);
+                response.Parameters.AddWithValue("id", id);
+
+                object result = response.ExecuteScalar();
+
+                if (result != null)
+                {
+                    bool isAvailable = Convert.ToBoolean(result);
+                    return isAvailable;
+                }
+                else
+                {
+                    MessageBox.Show("Kitap bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hata: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
         // METHOD AREA
 
 
@@ -393,42 +432,7 @@ namespace KutuphaneYonetimSistemi
 
 
         }
-        private bool IsBookAvailable( int id)
-        {
-            try
-            {
-                if (connection == null || connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
 
-                string query = "SELECT Durum FROM TableKitaplar WHERE ID = @id";
-                SqlCommand response = new(query, connection);
-                response.Parameters.AddWithValue("id", id);
-
-                object result = response.ExecuteScalar();
-
-                if (result != null) {
-                    bool isAvailable = Convert.ToBoolean(result); 
-                    return isAvailable; 
-                }
-                else
-                {
-                    MessageBox.Show("Kitap bulunamadı!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show("Hata: " + ex.Message);
-                return false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-        }
 
         [Obsolete]
         private void buttonKitapSilme_Click(object sender, EventArgs e)

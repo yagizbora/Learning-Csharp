@@ -40,7 +40,7 @@ namespace KutuphaneYonetimSistemi
         }
 
         [Obsolete]
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object? sender, EventArgs e)
         {
             string sifre = string.Empty;
 
@@ -50,14 +50,15 @@ namespace KutuphaneYonetimSistemi
                 return;
             }
 
-            if(string.IsNullOrEmpty(textBoxSifre.Text) || string.IsNullOrEmpty(textBoxKullaniciAdi.Text))
+            if (string.IsNullOrEmpty(textBoxSifre.Text) || string.IsNullOrEmpty(textBoxKullaniciAdi.Text))
             {
                 MessageBox.Show("Kullanýcý adý veya þifre boþ olamaz");
+                return;
             }
 
             try
             {
-                connection.Open(); 
+                connection.Open();
 
                 if (string.IsNullOrEmpty(textBoxKullaniciAdi.Text))
                 {
@@ -93,8 +94,8 @@ namespace KutuphaneYonetimSistemi
 
                     formKitaplar = new Form2();
                     this.Hide();
-                    formKitaplar.Show(); 
-                                          
+                    formKitaplar.Show();
+
                 }
                 else
                 {
@@ -111,6 +112,38 @@ namespace KutuphaneYonetimSistemi
                 {
                     connection.Close();
                 }
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(null, EventArgs.Empty);
+            }
+
+        }
+
+        private void textBoxKullaniciAdi_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                button1_Click(null, EventArgs.Empty);
+            }
+        }
+
+        private void textBoxSifre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                button1_Click(null, EventArgs.Empty);
             }
         }
     }
