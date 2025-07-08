@@ -97,8 +97,8 @@
 
     internal class Calculator
     {
-        public int FirstNumber { get; set; }
-        public int SecondNumber { get; set; }
+        public float FirstNumber { get; set; }
+        public float SecondNumber { get; set; }
         public float Result { get; set; }
     }
 }
