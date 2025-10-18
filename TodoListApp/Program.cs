@@ -59,7 +59,7 @@ namespace ToDoListApp
             Console.WriteLine("Görevler:");
             foreach (var task in tasks)
             {
-                Console.WriteLine($"{task.Name} - {(task.IsCompleted ? "Tamamlandı" : "Tamamlanmadı")}");
+                Console.WriteLine($"{task.Name} - {((bool)task.IsCompleted ? "Tamamlandı" : "Tamamlanmadı")}");
             }
         }
 
@@ -96,9 +96,9 @@ namespace ToDoListApp
         }
     }
 
-    class Task
+   internal class Task
     {
-        public string Name { get; set; }
-        public bool IsCompleted { get; set; }
+        public string? Name { get; set; }
+        public bool? IsCompleted { get; set; }
     }
 }
